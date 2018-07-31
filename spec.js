@@ -2,20 +2,22 @@ describe('Homepage', function() {
 
     beforeEach (function() {
         browser.ignoreSynchronization = false;
-        return browser.get('https://www.lego.com');
+        return browser.get('https://www.lego.com')
+            .then(element(by.css("area[alt='No']")).click()
+                .then(() => {return;}, () => {return;}))
     });
 
 
     it('has logo', () => {
 
-        return expect(element(by.css(".logo__img")).isPresent());
+        return expect(element(by.css(".l-logo__img")).isPresent()).toBe(true);
 
         });
 
     it('notification is shown on going to shop', () => {
 
         return element(by.css("[href='https://shop.lego.com/#shopxlink']")).click()
-            .then(() => expect(element(by.css("h2[text='You are about to visit our shopping site']")).isPresent()));
+            .then(() => expect(element(by.css("article[class='lego-modal-grid-column']")).isPresent()).toBe(true));
         });
 
     it('login has validation', () => {
@@ -23,9 +25,7 @@ describe('Homepage', function() {
         var errorName = element(by.css("p[for='fieldUsername']"));
         var errorPassword = element(by.css("p[for='fieldPassword']"));
 
-        return element(by.css("area[alt='No']")).click()
-            .then(() => {return;}, () => {return;})
-            .then(() => element(by.css("a[data-uitest='login-link']")).click())
+        element(by.css("a[data-uitest='login-link']")).click()
             .then(() => {
                 browser.ignoreSynchronization = true;
                 return browser.switchTo().frame(element(by.id('legoid-iframe')).getWebElement());
