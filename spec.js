@@ -5,6 +5,19 @@ describe('Homepage', function() {
         return browser.get('https://www.lego.com');
     });
 
+
+    it('has logo', () => {
+
+        return expect(element(by.css(".logo__img")).isPresent());
+
+        });
+
+    it('notification is shown on going to shop', () => {
+
+        return element(by.css("[href='https://shop.lego.com/#shopxlink']")).click()
+            .then(() => expect(element(by.css("h2[text='You are about to visit our shopping site']")).isPresent()));
+        });
+
     it('login has validation', () => {
 
         var errorName = element(by.css("p[for='fieldUsername']"));
@@ -15,7 +28,7 @@ describe('Homepage', function() {
             .then(() => element(by.css("a[data-uitest='login-link']")).click())
             .then(() => {
                 browser.ignoreSynchronization = true;
-                browser.switchTo().frame(element(by.id('legoid-iframe')).getWebElement());
+                return browser.switchTo().frame(element(by.id('legoid-iframe')).getWebElement());
             })
             .then(() => element(by.css("button[id='buttonSubmitLogin']")).click())
             .then(() => {
