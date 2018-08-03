@@ -1,3 +1,8 @@
+let page = require('./mainPage');
+let mainPage = page.page;
+let searchResult = page.searchResult;
+//page = new page2();
+
 describe('Homepage', function() {
 
     beforeEach (function() {
@@ -8,19 +13,31 @@ describe('Homepage', function() {
     });
 
 
-    it('has logo', () => {
+    xit('has logo', () => {
+
+        mainPage.open('https://www.lego.com/en-us');
+        expect(mainPagepage.logo.isPresent()).toBe(true);
+    });
+
+    it('search is performed', () => {
+
+        mainPage.open('https://www.lego.com/en-us');
+        mainPage.search('Ninjago');
+        expect(searchResult.item('').isPresent()).toBe(true);
+    })
+    /*it('has logo', () => {
 
         return expect(element(by.css(".l-logo__img")).isPresent()).toBe(true);
 
         });
 
-    it('notification is shown on going to shop', () => {
+    xit('notification is shown on going to shop', () => {
 
         return element(by.css("[href='https://shop.lego.com/#shopxlink']")).click()
             .then(() => expect(element(by.css("article[class='lego-modal-grid-column']")).isPresent()).toBe(true));
         });
 
-    it('login has validation', () => {
+    xit('login has validation', () => {
 
         var errorName = element(by.css("p[for='fieldUsername']"));
         var errorPassword = element(by.css("p[for='fieldPassword']"));
@@ -39,7 +56,7 @@ describe('Homepage', function() {
             .then(() => element(by.className('legoid-close')).click())
     });
 
-    it('search is performed', () => {
+    xit('search is performed', () => {
 
         var product = element(by.css("a[href='//shop.lego.com/en-US/Lloyd-Spinjitzu-Master-70628'] span"));
 
@@ -50,5 +67,5 @@ describe('Homepage', function() {
                 browser.ignoreSynchronization = true;
                 expect(product.getText()).toEqual('Lloyd - Spinjitzu Master');
             })
-    });
+    });*/
 })
