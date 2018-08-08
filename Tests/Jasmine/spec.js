@@ -10,7 +10,7 @@ describe('Homepage', () => {
         await mainPage.skipSurvey();
     });
 
-    xit('has logo', () => {
+    it('has logo', () => {
 
         expect(mainPage.logo.isPresent()).toBe(true);
     });
@@ -18,11 +18,17 @@ describe('Homepage', () => {
     it('notification is shown on going to shop', async function () {
 
         await mainPage.shopButton.click();
-        await expect(mainPage.shopModal.isPresent()).toBe(true);
+        let is;
+        await browser.wait(async() => {
+            is = await mainPage.shopModal.isPresent();
+            return is;
+        },5000).then(()=> null, ()=>null);
+
+        expect(is).toBe(true);
 
     });
 
-    xit('search is successful', async () => {
+    it('search is successful', async () => {
 
         await mainPage.search('Ninjago');
         await function () {
@@ -31,17 +37,18 @@ describe('Homepage', () => {
         };
     });
 
-    xit('login has validation for empty fields', async () => {
+    it('login has validation for empty fields', async () => {
 
         await mainPage.login('emptyLogin');
-        expect(mainPage.errorMessage.isPresent()).toBe(true);
+        expect(mainPage.elementData.emptyNameError.isPresent()).toBe(true);
+        expect(mainPage.elementData.emptyPasswordError.isPresent()).toBe(true);
 
     })
 
-    xit('login has validation for invalid creds', async () => {
+    it('login has validation for invalid creds', async () => {
 
         await mainPage.login('invalidLogin');
-        expect(mainPage.errorMessage.isPresent()).toBe(true);
+        expect(mainPage.elementData.invalidCredsError.isPresent()).toBe(true);
 
     })
 })

@@ -6,33 +6,39 @@ class mainPage extends page {
 
         super();
         this.url = 'https://www.lego.com/en-us';
-        this.logins = {
+
+        this.metadata = {
 
             'emptyLogin':
                 {
-                    'steps': () => {return;},
-                    'errorMessage': element(by.css("p[for='fieldUsername']")) || element(by.css("p[for='fieldPassword']")),
+                    username: '',
+                    password: '',
                 },
 
             'invalidLogin':
                 {
-                    'steps': () => {
-                        element(by.id('fieldUsername')).sendKeys('ABC');
-                        element(by.id('fieldPassword')).sendKeys('ABC12345');
-                        },
-                    'errorMessage': element(by.id('invalidUsernameOrPasswordCnt'))
+                    username: 'ABC',
+                    password: 'ABC12345',
                 }
+        };
+
+        this.elementData = {
+            username: element(by.id('fieldUsername')),
+            password: element(by.id('fieldPassword')),
+            emptyNameError: element(by.css("p[for='fieldUsername']")),
+            emptyPasswordError: element(by.css("p[for='fieldPassword']")),
+            invalidCredsError:  element(by.id('invalidUsernameOrPasswordCnt'))
         }
 
     }
 
     async login(creds) {
 
-        this.errorMessage = this.logins[creds]['errorMessage'];
         await element(by.css("a[data-uitest='login-link']")).click();
         browser.ignoreSynchronization = true;
         await browser.switchTo().frame(element(by.id('legoid-iframe')).getWebElement());
-        this.logins[creds]['steps']();
+        this.elementData.username.sendKeys(this.metadata[creds]['username']);
+        this.elementData.password.sendKeys(this.metadata[creds]['password']);
         await element(by.css("button[id='buttonSubmitLogin']")).click();
     }
 }
