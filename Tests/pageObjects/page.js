@@ -2,10 +2,12 @@ class page {
 
     constructor() {
 
-        this.logo = element(by.css(".l-logo__img"));
-        this.shopButton = element(by.css("[href='https://shop.lego.com/#shopxlink']"));
-        this.shopModal = element(by.css("[class='lego-modal-grid-column lego-modal-grid-column-figure']"));
+        this.parentElementData = {
 
+            logo: element(by.css(".l-logo__img")),
+            shopButton: element(by.css("[href='https://shop.lego.com/#shopxlink']")),
+            shopModal: element(by.css("[class='lego-modal-grid-column lego-modal-grid-column-figure']"))
+        }
     }
 
     open() {return browser.get(this.url)};

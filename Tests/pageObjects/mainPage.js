@@ -30,6 +30,7 @@ class mainPage extends page {
             invalidCredsError:  element(by.id('invalidUsernameOrPasswordCnt'))
         }
 
+        Object.assign(this.elementData, this.parentElementData);
     }
 
     async login(creds) {

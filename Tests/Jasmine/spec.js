@@ -12,15 +12,15 @@ describe('Homepage', () => {
 
     it('has logo', () => {
 
-        expect(mainPage.logo.isPresent()).toBe(true);
+        expect(mainPage.elementData.logo.isPresent()).toBe(true);
     });
 
     it('notification is shown on going to shop', async function () {
 
-        await mainPage.shopButton.click();
+        await mainPage.elementData.shopButton.click();
         let is;
         await browser.wait(async() => {
-            is = await mainPage.shopModal.isPresent();
+            is = await mainPage.elementData.shopModal.isPresent();
             return is;
         },5000).then(()=> null, ()=>null);
 
