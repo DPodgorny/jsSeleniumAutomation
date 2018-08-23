@@ -14,4 +14,4 @@ class searchResultPage extends page {
 
 }
 
-module.exports = new searchResultPage;
+module.exports = new searchResultPage();
