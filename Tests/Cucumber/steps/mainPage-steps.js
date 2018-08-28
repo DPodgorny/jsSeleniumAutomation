@@ -5,6 +5,9 @@ let searchResultPage = require('../../pageObjects/searchResultPage');
 let pageFactory = require('../../pageObjects/pageFactory');
 let expect = require('chai').expect;
 let assert = require('assert')
+let {setDefaultTimeout} = require('cucumber');
+
+setDefaultTimeout(15 * 1000);
 
 Given(/^I open '(.+)'$/, async function(page) {
     pageFactory.currentPage = pageFactory[page];
@@ -14,7 +17,7 @@ Given(/^I open '(.+)'$/, async function(page) {
 
 
 Then(/^'(.+)' is visible$/, async function(element) {
-    let expected = await pageFactory.currentPage.elementData[element].isPresent();
+    let expected = await browser.wait(function(){return pageFactory.currentPage.elementData[element].isPresent()},5000);
     expect(expected).to.equal(true);
 });
 
