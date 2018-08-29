@@ -1,11 +1,11 @@
+let capabilities = require('./capabilities.js');
+
 exports.config = {
 
     seleniumAddress: 'http://localhost:4444/wd/hub',
 
     // Capabilities to be passed to the webdriver instance.
-    capabilities: {
-        'browserName': 'chrome'
-    },
+    capabilities: capabilities[process.env.npm_config_browser],
 
     specs: 'Tests/Cucumber/features/*.feature',
 

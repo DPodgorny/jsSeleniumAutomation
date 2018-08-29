@@ -1,12 +1,12 @@
+let capabilities = require('./capabilities.js');
+
 // An example configuration file.
 exports.config = {
 
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
   // Capabilities to be passed to the webdriver instance.
-  capabilities: {
-    'browserName': 'chrome'
-  },
+  capabilities: capabilities[process.env.npm_config_browser],
 
     onPrepare: function () {
     browser.driver.manage().window().setSize(1920, 1080);
