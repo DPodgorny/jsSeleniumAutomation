@@ -9,8 +9,8 @@ exports.config = {
 
     specs: 'Tests/Cucumber/features/*.feature',
 
-    onPrepare: function () {
-        browser.driver.manage().window().setSize(1920, 1080);
+    onPrepare: async function () {
+        await browser.driver.manage().window().setSize(1920, 1080);
     },
 
     framework: 'custom',

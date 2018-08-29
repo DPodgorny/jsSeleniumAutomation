@@ -8,9 +8,9 @@ exports.config = {
   // Capabilities to be passed to the webdriver instance.
   capabilities: capabilities[process.env.npm_config_browser],
 
-    onPrepare: function () {
-    browser.driver.manage().window().setSize(1920, 1080);
-    },
+  onPrepare: async function () {
+      await browser.driver.manage().window().setSize(1920, 1080);
+  },
 
   // Framework to use. Jasmine is recommended.
   framework: 'jasmine',
