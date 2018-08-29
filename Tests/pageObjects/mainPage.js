@@ -44,4 +44,4 @@ class mainPage extends page {
     }
 }
 
-module.exports = new mainPage;
+module.exports = new mainPage();

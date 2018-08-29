@@ -6,7 +6,7 @@ class page {
 
             logo: element(by.css(".l-logo__img")),
             shopButton: element(by.css("[href='https://shop.lego.com/#shopxlink']")),
-            shopModal: element(by.css("[class='lego-modal-grid-column lego-modal-grid-column-figure']"))
+            shopModal: element(by.css("[class='l-modal__dialog  js--close-modal']"))
         }
     }
 
