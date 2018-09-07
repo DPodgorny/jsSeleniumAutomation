@@ -10,6 +10,11 @@ exports.config = {
 
   onPrepare: async function () {
       await browser.driver.manage().window().setSize(1920, 1080);
+
+      let jasmineReporters = require('protractor-jasmine2-html-reporter');
+      jasmine.getEnv().addReporter(new jasmineReporters({
+          savePath: 'reports/Jasmine'
+      }));
   },
 
   // Framework to use. Jasmine is recommended.
